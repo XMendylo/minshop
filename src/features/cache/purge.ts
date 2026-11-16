@@ -27,6 +27,7 @@ export async function purgeCacheTags(
   tags: Iterable<string>,
   purger: CachePurger = cache,
 ): Promise<void> {
+  if (typeof purger?.purge !== 'function') return;
   const normalized = normalizeCacheTags(tags);
   if (normalized.length === 0) return;
 
